@@ -1,0 +1,12 @@
+{
+  "name": "smart-farming-advisory",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "postinstall": "cd backend && npm i && cd ../frontend && npm i",
+    "dev": "powershell -Command \"Start-Process -NoNewWindow -FilePath node -ArgumentList 'backend/server.js'; cd frontend; npm run dev\"",
+    "start:backend": "node backend/server.js",
+    "start:frontend": "cd frontend && npm run dev"
+  }
+}
+
