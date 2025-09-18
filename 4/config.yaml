@@ -1,0 +1,39 @@
+# Sustainable Pesticide & Fertilizer Recommendation System Configuration
+
+# Model Configuration
+model:
+  path: "models/plant_disease_model.h5"
+  input_size: [224, 224]
+  mock_mode: true  # Set to false when model weights are available
+  confidence_threshold: 0.7
+  low_confidence_threshold: 0.5
+
+# Image Validation
+image:
+  max_size_mb: 8
+  min_dimensions: [224, 224]
+  supported_formats: ["jpeg", "jpg", "png"]
+  max_aspect_ratio: 3.0
+  min_aspect_ratio: 0.33
+
+# Anti-overuse Configuration
+anti_overuse:
+  max_applications_per_season: 4
+  max_dosage_multiplier: 1.5
+  require_confirmation_above: 1.2
+
+# Application Configuration
+app:
+  debug: true
+  output_format: "json"  # json, text, table
+
+# Localization
+localization:
+  default_language: "en"
+  supported_languages: ["en", "es", "fr", "hi", "pt"]
+
+# SDG Alignment
+sdg_alignment:
+  - "SDG 12: Responsible Consumption & Production"
+  - "SDG 3: Good Health & Well-being"
+  - "SDG 15: Life on Land"

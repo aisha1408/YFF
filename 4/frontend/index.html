@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sustainable Pesticide & Fertilizer Recommendation System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-leaf"></i> Sustainable Plant Care</h1>
+                <p>AI-powered disease detection with organic-first recommendations</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Upload Section -->
+            <section class="upload-section" id="uploadSection">
+                <div class="upload-card">
+                    <h2><i class="fas fa-camera"></i> Upload Plant Image</h2>
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-content">
+                            <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                            <p>Drag & drop your plant image here</p>
+                            <p class="upload-subtitle">or click to browse</p>
+                            <input type="file" id="imageInput" accept="image/jpeg,image/jpg,image/png" hidden>
+                        </div>
+                    </div>
+                    
+                    <!-- Image Preview -->
+                    <div class="image-preview" id="imagePreview" style="display: none;">
+                        <img id="previewImage" alt="Preview">
+                        <button class="remove-image" id="removeImage">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+
+                    <!-- Optional Metadata -->
+                    <div class="metadata-section">
+                        <h3>Optional Information</h3>
+                        <div class="metadata-grid">
+                            <div class="input-group">
+                                <label for="cropType">Crop Type</label>
+                                <input type="text" id="cropType" placeholder="e.g., Tomato, Rice, Wheat">
+                            </div>
+                            <div class="input-group">
+                                <label for="growthStage">Growth Stage</label>
+                                <select id="growthStage">
+                                    <option value="">Select stage</option>
+                                    <option value="seedling">Seedling</option>
+                                    <option value="vegetative">Vegetative</option>
+                                    <option value="flowering">Flowering</option>
+                                    <option value="fruiting">Fruiting</option>
+                                    <option value="mature">Mature</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="location">Location</label>
+                                <input type="text" id="location" placeholder="e.g., California, India">
+                            </div>
+                            <div class="input-group">
+                                <label for="language">Language</label>
+                                <select id="language">
+                                    <option value="en">English</option>
+                                    <option value="es">Español</option>
+                                    <option value="fr">Français</option>
+                                    <option value="hi">हिन्दी</option>
+                                    <option value="pt">Português</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="analyze-btn" id="analyzeBtn" disabled>
+                        <i class="fas fa-search"></i> Analyze Plant
+                    </button>
+                </div>
+            </section>
+
+            <!-- Loading Section -->
+            <section class="loading-section" id="loadingSection" style="display: none;">
+                <div class="loading-card">
+                    <div class="loading-spinner"></div>
+                    <h3>Analyzing your plant image...</h3>
+                    <p>Our AI is detecting diseases and preparing recommendations</p>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section" id="resultsSection" style="display: none;">
+                <div class="results-card">
+                    <div class="results-header">
+                        <h2><i class="fas fa-clipboard-list"></i> Analysis Results</h2>
+                        <button class="new-analysis-btn" id="newAnalysisBtn">
+                            <i class="fas fa-plus"></i> New Analysis
+                        </button>
+                    </div>
+
+                    <!-- Disease Detection -->
+                    <div class="disease-detection" id="diseaseDetection">
+                        <div class="disease-info">
+                            <h3 id="diseaseName">Disease Name</h3>
+                            <div class="confidence-bar">
+                                <span>Confidence:</span>
+                                <div class="confidence-meter">
+                                    <div class="confidence-fill" id="confidenceFill"></div>
+                                </div>
+                                <span id="confidenceText">0%</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Heatmap -->
+                        <div class="heatmap-container" id="heatmapContainer">
+                            <h4>AI Explanation</h4>
+                            <div class="heatmap-wrapper">
+                                <img id="heatmapImage" alt="AI Heatmap">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Treatment Recommendations -->
+                    <div class="treatments-section">
+                        <h3><i class="fas fa-pills"></i> Treatment Recommendations</h3>
+                        
+                        <!-- Organic Treatments -->
+                        <div class="treatment-category" id="organicTreatments">
+                            <h4><i class="fas fa-seedling"></i> Organic Treatments (Recommended First)</h4>
+                            <div class="treatments-list" id="organicList"></div>
+                        </div>
+
+                        <!-- Chemical Treatments -->
+                        <div class="treatment-category" id="chemicalTreatments">
+                            <h4><i class="fas fa-exclamation-triangle"></i> Chemical Treatments (Use with Caution)</h4>
+                            <div class="treatments-list" id="chemicalList"></div>
+                        </div>
+                    </div>
+
+                    <!-- SDG Alignment -->
+                    <div class="sdg-section">
+                        <h3><i class="fas fa-globe"></i> Sustainable Development Goals</h3>
+                        <p>Learn how our system contributes to global sustainability goals.</p>
+                        <a href="sdg_ui.html" target="_blank" class="sdg-link">
+                            <i class="fas fa-external-link-alt"></i> View SDG Impact Details
+                        </a>
+                    </div>
+
+                    <!-- Summary -->
+                    <div class="summary-section">
+                        <h3><i class="fas fa-info-circle"></i> Summary</h3>
+                        <p id="summaryText" class="summary-text"></p>
+                    </div>
+
+                    <!-- Warnings -->
+                    <div class="warnings-section" id="warningsSection" style="display: none;">
+                        <h3><i class="fas fa-exclamation-circle"></i> Important Notes</h3>
+                        <div id="warningsList"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 Sustainable Plant Care System. Promoting responsible agriculture for a better future.</p>
+        </footer>
+    </div>
+
+    <!-- Safety Modal -->
+    <div class="modal" id="safetyModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-shield-alt"></i> Safety Information</h3>
+                <button class="modal-close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Safety content will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

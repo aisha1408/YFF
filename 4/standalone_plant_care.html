@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Care System - Standalone</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2d5a27;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .info-box {
+            background: #e8f5e8;
+            border: 2px solid #2d5a27;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .info-box h3 {
+            color: #2d5a27;
+            margin-top: 0;
+        }
+        .btn {
+            background: #2d5a27;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn:hover {
+            background: #1e3d1a;
+        }
+        .btn-secondary {
+            background: #6c757d;
+        }
+        .btn-secondary:hover {
+            background: #545b62;
+        }
+        .form-group {
+            margin: 15px 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .results {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            display: none;
+        }
+        .disease-info {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #2d5a27;
+        }
+        .treatment-card {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #4a7c59;
+        }
+        .treatment-card.chemical {
+            border-left-color: #ff8c00;
+        }
+        .command-box {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        .command-box code {
+            background: #e9ecef;
+            padding: 2px 6px;
+            border-radius: 3px;
+            color: #d63384;
+        }
+        .step {
+            margin: 20px 0;
+            padding: 15px;
+            border-left: 4px solid #2d5a27;
+            background: #f8f9fa;
+        }
+        .step h4 {
+            margin-top: 0;
+            color: #2d5a27;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌱 Plant Disease Analysis System</h1>
+        
+        <div class="info-box">
+            <h3>Standalone System - No API Required!</h3>
+            <p>This system works directly with Python commands. No web server needed!</p>
+        </div>
+
+        <div class="step">
+            <h4>Step 1: Prepare Your Image</h4>
+            <p>Place your plant image in the project directory and name it <code>test_plant.jpg</code></p>
+            <div class="command-box">
+                <strong>Command to create test image:</strong><br>
+                <code>python -c "from PIL import Image; img = Image.new('RGB', (300, 300), 'green'); img.save('test_plant.jpg'); print('Test image created')"</code>
+            </div>
+        </div>
+
+        <div class="step">
+            <h4>Step 2: Set Analysis Parameters</h4>
+            <div class="form-group">
+                <label for="cropType">Crop Type:</label>
+                <input type="text" id="cropType" placeholder="e.g., Tomato, Rice, Wheat" value="tomato">
+            </div>
+            <div class="form-group">
+                <label for="growthStage">Growth Stage:</label>
+                <select id="growthStage">
+                    <option value="">Select stage</option>
+                    <option value="seedling" selected>Seedling</option>
+                    <option value="vegetative">Vegetative</option>
+                    <option value="flowering">Flowering</option>
+                    <option value="fruiting">Fruiting</option>
+                    <option value="mature">Mature</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <input type="text" id="location" placeholder="e.g., California, India" value="india">
+            </div>
+            <div class="form-group">
+                <label for="language">Language:</label>
+                <select id="language">
+                    <option value="en" selected>English</option>
+                    <option value="es">Español</option>
+                    <option value="fr">Français</option>
+                    <option value="hi">हिन्दी</option>
+                    <option value="pt">Português</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="step">
+            <h4>Step 3: Run Analysis</h4>
+            <p>Copy and run this command in your terminal:</p>
+            <div class="command-box" id="commandBox">
+                <code>python main.py analyze test_plant.jpg --crop-type tomato --language en</code>
+            </div>
+            <button class="btn" onclick="updateCommand()">🔄 Update Command</button>
+            <button class="btn btn-secondary" onclick="copyCommand()">📋 Copy Command</button>
+        </div>
+
+        <div class="step">
+            <h4>Step 4: View Results</h4>
+            <p>The system will display:</p>
+            <ul>
+                <li>🌿 Disease detection with confidence score</li>
+                <li>💊 Organic treatment recommendations (prioritized)</li>
+                <li>⚠️ Chemical treatment options (if needed)</li>
+                <li>🛡️ Safety guidelines and PPE requirements</li>
+                <li>💰 Cost estimates per hectare</li>
+                <li>📊 Application frequency and timing</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h4>Alternative: Treatment Lookup</h4>
+            <p>To get treatment information for a specific disease:</p>
+            <div class="command-box">
+                <code>python main.py treatment powdery_mildew --language en</code>
+            </div>
+            <p><strong>Available diseases:</strong> powdery_mildew, bacterial_spot, rust, healthy</p>
+        </div>
+
+        <div class="step">
+            <h4>System Features</h4>
+            <ul>
+                <li>✅ <strong>Organic-First Approach</strong> - Prioritizes sustainable treatments</li>
+                <li>✅ <strong>Anti-Overuse Protection</strong> - Prevents excessive chemical use</li>
+                <li>✅ <strong>Safety Guidelines</strong> - Comprehensive PPE requirements</li>
+                <li>✅ <strong>Multilingual Support</strong> - 5 languages supported</li>
+                <li>✅ <strong>SDG Aligned</strong> - Supports Sustainable Development Goals</li>
+                <li>✅ <strong>Mock Mode</strong> - Works without ML model weights</li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <h3>🎯 Quick Start</h3>
+            <p>1. Create test image → 2. Update parameters → 3. Copy command → 4. Run in terminal → 5. View results!</p>
+            <p><strong>No web server, no API, no complexity - just simple Python commands!</strong></p>
+        </div>
+    </div>
+
+    <script>
+        function updateCommand() {
+            const cropType = document.getElementById('cropType').value;
+            const growthStage = document.getElementById('growthStage').value;
+            const location = document.getElementById('location').value;
+            const language = document.getElementById('language').value;
+            
+            let command = 'python main.py analyze test_plant.jpg';
+            
+            if (cropType) {
+                command += ` --crop-type "${cropType}"`;
+            }
+            if (growthStage) {
+                command += ` --growth-stage "${growthStage}"`;
+            }
+            if (location) {
+                command += ` --location "${location}"`;
+            }
+            if (language && language !== 'en') {
+                command += ` --language "${language}"`;
+            }
+            
+            document.getElementById('commandBox').innerHTML = `<code>${command}</code>`;
+        }
+
+        function copyCommand() {
+            const commandText = document.getElementById('commandBox').textContent;
+            navigator.clipboard.writeText(commandText).then(() => {
+                alert('Command copied to clipboard!');
+            }).catch(() => {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = commandText;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alert('Command copied to clipboard!');
+            });
+        }
+
+        // Update command when parameters change
+        document.getElementById('cropType').addEventListener('input', updateCommand);
+        document.getElementById('growthStage').addEventListener('change', updateCommand);
+        document.getElementById('location').addEventListener('input', updateCommand);
+        document.getElementById('language').addEventListener('change', updateCommand);
+
+        // Initialize command on page load
+        updateCommand();
+    </script>
+</body>
+</html>

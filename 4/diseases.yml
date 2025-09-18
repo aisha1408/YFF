@@ -1,0 +1,167 @@
+# Disease Treatment Database
+# Format: disease_id -> list of remedies sorted by priority (organic first)
+
+powdery_mildew:
+  name: "Powdery Mildew"
+  remedies:
+    - type: "organic"
+      name: "Neem oil 1% spray"
+      application: "10 ml per L"
+      application_volume: "500 L/ha"
+      frequency: "Every 7 days (max 4 times/season)"
+      best_time: "Early morning or late evening, avoid flowering"
+      cost_estimate_per_hectare: "USD 12"
+      safety:
+        PPE: ["gloves", "mask"]
+        disposal: "Container triple-rinse"
+        warning: "Safe for pollinators if not applied during bloom"
+        pre_harvest_interval: "0 days"
+      evidence_score: 0.6
+      max_applications_per_season: 4
+      
+    - type: "organic"
+      name: "Baking soda solution"
+      application: "5 g per L"
+      application_volume: "400 L/ha"
+      frequency: "Every 5 days (max 6 times/season)"
+      best_time: "Early morning"
+      cost_estimate_per_hectare: "USD 3"
+      safety:
+        PPE: ["gloves"]
+        disposal: "Safe for soil"
+        warning: "Test on small area first"
+        pre_harvest_interval: "0 days"
+      evidence_score: 0.4
+      max_applications_per_season: 6
+      
+    - type: "chemical"
+      name: "Sulfur fungicide"
+      application: "2 g per L"
+      application_volume: "300 L/ha"
+      frequency: "Every 10 days (max 3 times/season)"
+      best_time: "Early morning, temperature below 30°C"
+      cost_estimate_per_hectare: "USD 25"
+      safety:
+        PPE: ["gloves", "mask", "goggles", "long sleeves"]
+        disposal: "Triple rinse container, dispose at approved facility"
+        warning: "Toxic to beneficial insects, avoid during bloom"
+        pre_harvest_interval: "7 days"
+      evidence_score: 0.8
+      max_applications_per_season: 3
+      requires_confirmation: true
+
+bacterial_spot:
+  name: "Bacterial Spot"
+  remedies:
+    - type: "organic"
+      name: "Copper-based bio-fungicide"
+      application: "15 ml per L"
+      application_volume: "400 L/ha"
+      frequency: "Every 10 days (max 3 times/season)"
+      best_time: "Early morning or late evening"
+      cost_estimate_per_hectare: "USD 18"
+      safety:
+        PPE: ["gloves", "mask"]
+        disposal: "Container triple-rinse"
+        warning: "May cause copper accumulation in soil"
+        pre_harvest_interval: "3 days"
+      evidence_score: 0.7
+      max_applications_per_season: 3
+      
+    - type: "organic"
+      name: "Prune infected leaves"
+      application: "Remove affected tissue"
+      application_volume: "N/A"
+      frequency: "As needed"
+      best_time: "Dry weather conditions"
+      cost_estimate_per_hectare: "USD 0"
+      safety:
+        PPE: ["gloves"]
+        disposal: "Burn or bury infected material"
+        warning: "Disinfect tools between plants"
+        pre_harvest_interval: "0 days"
+      evidence_score: 0.5
+      max_applications_per_season: 999
+      
+    - type: "chemical"
+      name: "Streptomycin antibiotic"
+      application: "1 g per L"
+      application_volume: "300 L/ha"
+      frequency: "Every 7 days (max 2 times/season)"
+      best_time: "Early morning"
+      cost_estimate_per_hectare: "USD 45"
+      safety:
+        PPE: ["gloves", "mask", "goggles", "protective suit"]
+        disposal: "Return unused product to supplier"
+        warning: "Restricted use - requires license. May cause resistance"
+        pre_harvest_interval: "14 days"
+      evidence_score: 0.9
+      max_applications_per_season: 2
+      requires_confirmation: true
+
+rust:
+  name: "Rust Disease"
+  remedies:
+    - type: "organic"
+      name: "Garlic extract spray"
+      application: "20 ml per L"
+      application_volume: "400 L/ha"
+      frequency: "Every 5 days (max 5 times/season)"
+      best_time: "Early morning"
+      cost_estimate_per_hectare: "USD 8"
+      safety:
+        PPE: ["gloves"]
+        disposal: "Safe for soil"
+        warning: "Strong odor, may affect beneficial insects"
+        pre_harvest_interval: "0 days"
+      evidence_score: 0.5
+      max_applications_per_season: 5
+      
+    - type: "organic"
+      name: "Remove infected leaves"
+      application: "Manual removal"
+      application_volume: "N/A"
+      frequency: "Weekly"
+      best_time: "Dry conditions"
+      cost_estimate_per_hectare: "USD 0"
+      safety:
+        PPE: ["gloves"]
+        disposal: "Burn infected material"
+        warning: "Prevent spore spread"
+        pre_harvest_interval: "0 days"
+      evidence_score: 0.6
+      max_applications_per_season: 999
+      
+    - type: "chemical"
+      name: "Azoxystrobin fungicide"
+      application: "1.5 ml per L"
+      application_volume: "300 L/ha"
+      frequency: "Every 14 days (max 2 times/season)"
+      best_time: "Early morning, avoid rain for 4 hours"
+      cost_estimate_per_hectare: "USD 35"
+      safety:
+        PPE: ["gloves", "mask", "goggles", "long sleeves"]
+        disposal: "Triple rinse, dispose at approved facility"
+        warning: "Toxic to aquatic life, avoid water bodies"
+        pre_harvest_interval: "10 days"
+      evidence_score: 0.85
+      max_applications_per_season: 2
+      requires_confirmation: true
+
+healthy:
+  name: "Healthy Plant"
+  remedies:
+    - type: "organic"
+      name: "Preventive care"
+      application: "Regular monitoring"
+      application_volume: "N/A"
+      frequency: "Weekly"
+      best_time: "Any time"
+      cost_estimate_per_hectare: "USD 0"
+      safety:
+        PPE: []
+        disposal: "N/A"
+        warning: "Continue monitoring for early detection"
+        pre_harvest_interval: "0 days"
+      evidence_score: 1.0
+      max_applications_per_season: 999
