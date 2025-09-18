@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120">
-  <rect width="200" height="120" fill="#f3f3f3"/>
-  <ellipse cx="90" cy="60" rx="40" ry="28" fill="#a67c52"/>
-  <ellipse cx="130" cy="60" rx="40" ry="28" fill="#8e5b35"/>
-  <text x="100" y="110" text-anchor="middle" font-size="12" fill="#555">Potato Late Blight</text>
-</svg>
-
-
-
