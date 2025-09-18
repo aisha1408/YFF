@@ -1,66 +1,78 @@
-Smart Farming Advisory System
-================================
+# early-warning-alerts
 
-Prototype web app that provides basic, rule-based recommendations for farmers based on soil type and crop.
+Weather-driven crop disease early warning prototype (JSON-only). Built for hackathon demos: fetch weather, run simple rules, translate and send alerts via SMS or in-app.
 
-Stack
------
-- Frontend: React + Vite + TailwindCSS
-- Backend: Node.js + Express
-- Data: Static JSON rules in `backend/data/rules.json`
+## Architecture
 
-Quickstart (Windows PowerShell)
--------------------------------
-1. Install Node.js 18+.
-2. In the project root, run:
-```powershell
-npm install
-```
-This installs dependencies for both backend and frontend.
+- `json_api.py`: Main CLI interface for all functionality
+- `weather_api.py`: Mock weather data generator; returns temp/humidity/rain/description/timestamp
+- `disease_rules.py`: Heuristic rules for Powdery Mildew, Rice Blast, Aphids; overall risk
+- `notifier.py`: Mock SMS sender and in-app JSON notification store
+- `translate_utils.py`: Translation via `googletrans` if available; mock fallback otherwise
+- `config.py`: Paths and configuration
+- `sample_run.py`: CLI demo with assertions and SMS simulation
 
-3. Start the backend and frontend:
-```powershell
-npm run dev
-```
-- Backend: http://localhost:5000
-- Frontend: http://localhost:5173
+## Setup
 
-If `npm run dev` doesn't open both, you can run them separately:
-```powershell
-npm run start:backend
-npm run start:frontend
-```
-
-Customize rules
----------------
-Edit `backend/data/rules.json`. Restart backend if running.
-
-Environment
------------
-- Change API base for frontend via `.env` in `frontend/`:
-```
-VITE_API_BASE=http://localhost:5000
-VITE_ML_API_BASE=http://localhost:8000
-```
-
-ML Disease Detection Service
----------------------------
-- Location: `ml_backend/`
-- Create and activate a Python 3.10+ venv, then:
-```powershell
-cd ml_backend
-pip install -r requirements.txt
-uvicorn app:app --reload --port 8000
-```
-- Test with curl:
+1) Python 3.10+
+2) Create and activate a virtual environment
+3) Install deps:
 ```bash
-curl -X POST "http://localhost:8000/api/detect" -F "image=@examples/leaf1.jpg"
+pip install -r requirements.txt
+```
+Notes:
+- No API keys needed - uses mock weather data based on location.
+- SMS is mocked (printed to console) and returns success.
+- If `googletrans` fails, translations fall back to suffix tags like `[HI]`, `[KN]`.
+
+## Web Interface (Recommended)
+
+Start the web server:
+```bash
+python app.py
 ```
 
-Model notes:
-- By default, a mock inference runs if `MODEL_PATH` is not provided.
-- To use TensorFlow, install tensorflow and set `MODEL_PATH` to your `.h5` or SavedModel dir.
-- To use TorchScript, install torch/torchvision and set `MODEL_PATH` to your `.pt` file.
+Then open your browser to: http://localhost:5000
 
-This is a prototype for demonstration; consult local agronomic advisories for precise recommendations.
+Features:
+- Beautiful web interface with weather cards and risk visualization
+- Location input (city or coordinates)
+- Real-time weather and disease risk assessment
+- 7-day outlook with color-coded risk levels
+- Feedback submission
+- Responsive design
+
+## Command Line Interface
+
+For JSON output, use the CLI:
+```bash
+python json_api.py --city Bengaluru --include-outlook --days 7
+python json_api.py --lat 12.9716 --lon 77.5946 --include-outlook --include-historical
+python json_api.py --city Delhi --feedback "Very helpful system"
+python json_api.py --city Mumbai --advisory-export
+```
+
+## CLI Demo
+
+```bash
+python sample_run.py
+```
+This fetches weather for Bengaluru (or mocked if network fails), prints risks, and simulates SMS.
+
+## Acceptance Criteria
+
+- Weather fetched and displayed in the UI
+- At least one risk triggers for the given sample weather (Bengaluru)
+- SMS function can be toggled and simulated (works with or without Twilio creds)
+
+## SDG Alignment
+
+- SDG 13 (Climate Action): Anticipatory adaptation through weather-driven risk alerts.
+- SDG 12 (Responsible Consumption and Production): Reduces unnecessary pesticide use via targeted advisories.
+- SDG 9 (Industry, Innovation and Infrastructure): Demonstrates scalable, low-cost digital advisory infrastructure.
+
+## Disclaimer
+
+This is a simplified prototype for hackathon/demo purposes; agronomic decisions require local expert validation.
+
 
