@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120">
+  <rect width="200" height="120" fill="#f3f3f3"/>
+  <polygon points="40,100 100,20 160,100" fill="#2ecc71"/>
+  <circle cx="100" cy="80" r="18" fill="#27ae60"/>
+  <text x="100" y="110" text-anchor="middle" font-size="12" fill="#555">Rice Blast</text>
+</svg>
+
+
+
