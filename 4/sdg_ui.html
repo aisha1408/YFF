@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDG Alignment - Sustainable Plant Care</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .sdg-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .sdg-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .sdg-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .sdg-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .sdg-12 { color: #c5192d; }
+        .sdg-3 { color: #4c9f38; }
+        .sdg-15 { color: #56c02b; }
+
+        .sdg-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .sdg-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .sdg-features {
+            list-style: none;
+        }
+
+        .sdg-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            color: #555;
+        }
+
+        .sdg-features li:before {
+            content: "✓";
+            color: #4c9f38;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .sdg-features li:last-child {
+            border-bottom: none;
+        }
+
+        .impact-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .impact-title {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .impact-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #4c9f38;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .cta-section {
+            text-align: center;
+            color: white;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
+            margin: 10px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .sdg-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .impact-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌍 Sustainable Development Goals</h1>
+            <p>How Our Plant Care System Contributes to Global Sustainability</p>
+        </div>
+
+        <div class="sdg-grid">
+            <div class="sdg-card">
+                <div class="sdg-number sdg-12">12</div>
+                <div class="sdg-title">Responsible Consumption & Production</div>
+                <div class="sdg-description">
+                    Our system promotes sustainable agricultural practices by prioritizing organic treatments and preventing chemical overuse.
+                </div>
+                <ul class="sdg-features">
+                    <li>Reduces agrochemical overuse through anti-overuse logic</li>
+                    <li>Promotes organic alternatives as first-line treatments</li>
+                    <li>Prevents waste with precise application guidelines</li>
+                    <li>Supports sustainable agriculture practices</li>
+                </ul>
+            </div>
+
+            <div class="sdg-card">
+                <div class="sdg-number sdg-3">3</div>
+                <div class="sdg-title">Good Health & Well-being</div>
+                <div class="sdg-description">
+                    We protect farmer health and ensure food safety through comprehensive safety guidelines and organic-first recommendations.
+                </div>
+                <ul class="sdg-features">
+                    <li>Protects farmer health with comprehensive PPE requirements</li>
+                    <li>Reduces chemical exposure through organic recommendations</li>
+                    <li>Provides safety guidelines including disposal instructions</li>
+                    <li>Includes pre-harvest intervals to ensure food safety</li>
+                </ul>
+            </div>
+
+            <div class="sdg-card">
+                <div class="sdg-number sdg-15">15</div>
+                <div class="sdg-title">Life on Land</div>
+                <div class="sdg-description">
+                    Our system preserves biodiversity and protects ecosystems by minimizing chemical use and supporting soil health.
+                </div>
+                <ul class="sdg-features">
+                    <li>Preserves biodiversity by minimizing chemical use</li>
+                    <li>Protects pollinators with application timing guidelines</li>
+                    <li>Supports soil health through organic treatment prioritization</li>
+                    <li>Reduces environmental contamination from agrochemicals</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="impact-section">
+            <h2 class="impact-title">Our Impact</h2>
+            <div class="impact-stats">
+                <div class="stat-card">
+                    <div class="stat-number">90%+</div>
+                    <div class="stat-label">Organic-First Compliance</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">PPE Requirement Coverage</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">4x</div>
+                    <div class="stat-label">Max Applications Per Season</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Supported Languages</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Ready to Make a Difference?</h2>
+            <p>Start using our sustainable plant care system today</p>
+            <a href="index.html" class="cta-button">Back to Plant Care</a>
+            <a href="#" class="cta-button" onclick="window.close()">Close SDG Info</a>
+        </div>
+    </div>
+
+    <script>
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.sdg-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Animate stats on scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            const statCards = document.querySelectorAll('.stat-card');
+            statCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

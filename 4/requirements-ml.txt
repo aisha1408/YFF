@@ -1,0 +1,5 @@
+# Machine Learning dependencies (install separately)
+# These are optional and only needed if you want to use real models instead of mock mode
+
+tensorflow>=2.10.0
+opencv-python>=4.5.0

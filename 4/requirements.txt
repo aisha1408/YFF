@@ -1,0 +1,13 @@
+# Core dependencies
+pillow>=9.0.0
+numpy>=1.21.0
+pyyaml>=6.0
+python-dotenv>=1.0.0
+click>=8.0.0
+
+# Machine Learning (optional - install separately if needed)
+# tensorflow>=2.10.0
+# opencv-python>=4.5.0
+
+# Testing
+pytest>=7.0.0
